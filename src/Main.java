@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Main {
 
+
+    // NEED TO ADD GUARANTEED 4 STAR FEATURE
     public static int rollResult (int rollHistory) {
         int rollResult = 0;
 
@@ -66,10 +68,12 @@ public class Main {
                     case 1:
                         System.out.println();
                         System.out.println("    4 star woah good job");
+                        // Need to reset 4 star pity
                         break;
                     case 2:
                         System.out.println();
                         System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡");
+                        // Need to reset 5 star pity
                         break;
                 }
             }
