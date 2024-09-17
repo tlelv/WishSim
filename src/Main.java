@@ -44,14 +44,44 @@ public class Main {
         return rollResult;
     }
 
-    //public static int runRoll {
+    public static void runRoll (rollHistory rollHist, midHistory midHist){
+        int reward;
 
-    //}
+        rollHist.addHistory();
+        reward = rollResult(rollHist.getHistory());
+
+        // Guaranteed 4 star
+        if (midHist.getHistory() >= 9 && reward != 2) {
+            reward = 1;
+        }
+
+        switch (reward) {
+            case 0:
+                System.out.println();
+                System.out.println("    3 star haha get fucked\n");
+                midHist.addHistory();
+                break;
+            case 1:
+                System.out.println();
+                System.out.println("    4 star woah good job\n");
+                midHist.clearHistory();
+                break;
+            case 2:
+                System.out.println();
+                System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡\n");
+                // Resets Pity
+                // Add Method to determine 50/50
+                midHist.addHistory();
+                rollHist.clearHistory();
+                break;
+        }
+    }
+    
     public static void main(String[] args) {
+        rollHistory currHistory = new rollHistory();
+        midHistory currMidHistory = new midHistory();
         Scanner scr = new Scanner(System.in);
         int val = 0,
-            rollHistory = 0,
-            midHistory = 0,
             reward;
 
 
@@ -69,34 +99,7 @@ public class Main {
             switch(val) {
                 case 1:
                     System.out.println("\n    Preparing to Roll...");
-                    rollHistory++;
-
-                    reward = rollResult(rollHistory);
-
-                    // Guaranteed 4 star
-                    if (midHistory >= 9 && reward != 2) {
-                        reward = 1;
-                    }
-                    switch(reward) {
-                        case 0:
-                            System.out.println();
-                            System.out.println("    3 star haha get fucked\n");
-                            midHistory++;
-                            break;
-                        case 1:
-                            System.out.println();
-                            System.out.println("    4 star woah good job\n");
-                            midHistory = 0;
-                            break;
-                        case 2:
-                            System.out.println();
-                            System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡\n");
-                            // Resets Pity
-                            // Add Method to determine 50/50
-                            midHistory++;
-                            rollHistory = 0;
-                            break;
-                    }
+                    runRoll(currHistory, currMidHistory);
                     break;
                 case 2:
                     // ADD 10 ROLL
