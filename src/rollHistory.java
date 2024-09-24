@@ -14,5 +14,7 @@ public class rollHistory {
     public void clearHistory() {
         this.history = 0;
     }
+
 }
+
 

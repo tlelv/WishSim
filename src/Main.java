@@ -44,7 +44,7 @@ public class Main {
         return rollResult;
     }
 
-    public static void runRoll (rollHistory rollHist, midHistory midHist){
+    public static void runRoll (rollHistory rollHist, midHistory midHist, rewardList rewardHistory){
         int reward;
 
         rollHist.addHistory();
@@ -54,21 +54,22 @@ public class Main {
         if (midHist.getHistory() >= 9 && reward != 2) {
             reward = 1;
         }
+        // rewardHistory.addReward(reward, "PUT ITEM HERE DECIDED BY RNG");
 
         switch (reward) {
             case 0:
                 System.out.println();
-                System.out.println("    3 star haha get fucked\n");
+                System.out.println("    3 star haha get fucked (3)\n");
                 midHist.addHistory();
                 break;
             case 1:
                 System.out.println();
-                System.out.println("    4 star woah good job\n");
+                System.out.println("    4 star woah good job (4)\n");
                 midHist.clearHistory();
                 break;
             case 2:
                 System.out.println();
-                System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡\n");
+                System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡ (5)\n");
                 // Resets Pity
                 // Add Method to determine 50/50
                 midHist.addHistory();
@@ -76,38 +77,47 @@ public class Main {
                 break;
         }
     }
-    
+
     public static void main(String[] args) {
         rollHistory currHistory = new rollHistory();
         midHistory currMidHistory = new midHistory();
+        rewardList rewardHistory = new rewardList();
         Scanner scr = new Scanner(System.in);
-        int val = 0,
-            reward;
+        int val = 0;
 
-
-        System.out.println("\n     Welcome to 50/50 Cope");
-        System.out.println("     ---------------------");
-        System.out.println("     Enter (1) to Single wish");
-        System.out.println("     Enter (2) to Multi Wish (10)");
-        System.out.println("     Enter (3) to Check Wish History");
-        System.out.println("     Enter (4) to Stop");
 
         while (val != 4) {
+            System.out.println("\n     Welcome to 50/50 Cope");
+            System.out.println("     ---------------------");
+            System.out.println("     Enter (1) to Single wish");
+            System.out.println("     Enter (2) to Multi Wish (10)");
+            System.out.println("     Enter (3) to Check Wish History");
+            System.out.println("     Enter (4) to Stop");
+            System.out.println();
+            System.out.println();
             System.out.print("     Enter Choice: ");
+
+
+
             val = scr.nextInt();
 
             switch(val) {
                 case 1:
                     System.out.println("\n    Preparing to Roll...");
-                    runRoll(currHistory, currMidHistory);
+                    runRoll(currHistory, currMidHistory, rewardHistory);
                     break;
                 case 2:
                     // ADD 10 ROLL
                     System.out.println("Rolling 10 times");
+                    for (int i = 0; i < 10; i++) {
+                        runRoll(currHistory, currMidHistory, rewardHistory);
+                    }
                     break;
                 case 3:
                     // ADD ROLL HISTORY
-                    System.out.println("Checking roll history");
+                    System.out.println("\nChecking roll history");
+                    System.out.println();
+                    System.out.println("Current Roll History: " + currHistory.getHistory());
                     break;
                 case 4:
                     break;
