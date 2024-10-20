@@ -2,20 +2,20 @@
 import java.util.ArrayList;
 
 public class rewardList {
-    private ArrayList<rewardObject> rewardHistory;
+    private ArrayList<Reward> rewardHistory;
+    private ArrayList<Reward> rewardChoices;
 
     public void RewardHistory() {
         rewardHistory = new ArrayList<>();
     }
 
     // Add a new Reward to the array
-    public void addReward(int reward, String item) {
-        rewardObject obj = new rewardObject(reward, item);
+    public void addReward(Reward obj) {
         rewardHistory.add(obj);
     }
 
     // Get the object at a specified index
-    public rewardObject getObject(int index) {
+    public Reward getObject(int index) {
         if (index >= 0 && index < rewardHistory.size()) {
             return rewardHistory.get(index);
         } else {
@@ -25,7 +25,7 @@ public class rewardList {
 
     // Display all objects in the array
     public void displayAllRewards() {
-        for (rewardObject obj : rewardHistory) {
+        for (Reward obj : rewardHistory) {
             System.out.println(obj);
         }
     }

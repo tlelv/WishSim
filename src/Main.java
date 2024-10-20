@@ -1,9 +1,12 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-
 // Make array of roll history so it can be viewed again
-// Add 10 roll function
 public class Main {
 
     public static int rollResult (int rollHistory) {
@@ -78,12 +81,77 @@ public class Main {
         }
     }
 
+    public static int currency(boolean purchase) {
+        int balance = 0;
+
+        if (purchase) {
+            balance++;
+        }
+
+        return balance;
+    }
+
     public static void main(String[] args) {
         rollHistory currHistory = new rollHistory();
         midHistory currMidHistory = new midHistory();
         rewardList rewardHistory = new rewardList();
         Scanner scr = new Scanner(System.in);
         int val = 0;
+
+        // Lists to hold rewards by rarity
+        List<Reward> rarity2 = new ArrayList<>();  // 5-star
+        List<Reward> rarity1 = new ArrayList<>();  // 4-star
+        List<Reward> rarity0 = new ArrayList<>();  // 3-star
+
+        // Read from file
+        String fileName = "exampleList.txt"; // The file that contains the reward data
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Ignore comment lines or empty lines
+                if (line.startsWith("#") || line.trim().isEmpty()) {
+                    continue;
+                }
+
+                // Process each line from the file
+                String[] parts = line.split(";");
+                int rarity = Integer.parseInt(parts[0]);
+                String name = parts[1];
+                String weaponType = parts[2];
+                String element = parts[3];
+
+                // Create a new reward object
+                Reward reward = new Reward(rarity, name, weaponType, element);
+
+                // Add to the respective list based on rarity
+                if (rarity == 2) {
+                    rarity2.add(reward);
+                } else if (rarity == 1) {
+                    rarity1.add(reward);
+                } else if (rarity == 0) {
+                    rarity0.add(reward);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+
+        // Print the lists
+        System.out.println("5-star rewards:");
+        for (Reward reward : rarity2) {
+            System.out.println(reward);
+        }
+
+        System.out.println("\n4-star rewards:");
+        for (Reward reward : rarity1) {
+            System.out.println(reward);
+        }
+
+        System.out.println("\n3-star rewards:");
+        for (Reward reward : rarity0) {
+            System.out.println(reward);
+        }
 
 
         while (val != 4) {
@@ -107,14 +175,12 @@ public class Main {
                     runRoll(currHistory, currMidHistory, rewardHistory);
                     break;
                 case 2:
-                    // ADD 10 ROLL
                     System.out.println("Rolling 10 times");
                     for (int i = 0; i < 10; i++) {
                         runRoll(currHistory, currMidHistory, rewardHistory);
                     }
                     break;
                 case 3:
-                    // ADD ROLL HISTORY
                     System.out.println("\nChecking roll history");
                     System.out.println();
                     System.out.println("Current Roll History: " + currHistory.getHistory());
