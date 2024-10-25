@@ -47,11 +47,10 @@ public class Main {
         return rollResult;
     }
 
-    public static void runRoll (rollHistory rollHist, midHistory midHist, rewardList rewardHistory,
+    public static void runRoll (rollHistory rollHist, midHistory midHist,
                                        List<Reward> rarity2, List<Reward> rarity1, List<Reward> rarity0) {
         int reward;
         Random roll = new Random();
-        int rollList = 0;
 
         rollHist.incrementRollCount();
         reward = rollResult(rollHist.getRollCount());
@@ -113,7 +112,6 @@ public class Main {
     public static void main(String[] args) {
         rollHistory currHistory = new rollHistory();
         midHistory currMidHistory = new midHistory();
-        rewardList rewardHistory = new rewardList();
         Scanner scr = new Scanner(System.in);
         int val = 0;
 
@@ -200,12 +198,12 @@ public class Main {
             switch(val) {
                 case 1:
                     System.out.println("\n    Preparing to Roll...");
-                    runRoll(currHistory, currMidHistory, rewardHistory, rarity2, rarity1, rarity0);
+                    runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
                     break;
                 case 2:
                     System.out.println("Rolling 10 times");
                     for (int i = 0; i < 10; i++) {
-                        runRoll(currHistory, currMidHistory, rewardHistory, rarity2, rarity1, rarity0);
+                        runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
                     }
                     break;
                 case 3:
