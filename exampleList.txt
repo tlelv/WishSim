@@ -1,5 +1,4 @@
 # Reward info: rarity (0-2), name, weapon-type (x if none), element (x if none).
-
 # Standard 5-star Characters
 2;Dehya;x;Pyro
 2;Diluc;x;Pyro
@@ -8,15 +7,12 @@
 2;Mona;x;Hydro
 2;Qiqi;x;Cryo
 2;Tighnari;x;Dendro
-
 # Standard 5-star Weapons
-2;Amos Bow:Bow;x
 2;Wolf Gravestone;Claymore;x
 2;Skyward Spine;Polearm;x
 2;Skyward Pride;Sword;x
 2;Skyward Atlas;Catalyst;x
 2;Primordial Jade Winged Spear;Polearm;x
-
 # Standard 4-star Characters
 1;Amber;x;Pyro
 1;Barbara;x;Hydro
@@ -26,17 +22,13 @@
 1;Collei;x;Dendro
 1;Faruzan;x;Anemo
 1;Gorou;x;Geo
-
 # Standard 4-star Weapons
-1;Rust:Bow;x
 1;Rainslasher;Claymore;x
 1;Favonius Lance;Polearm;x
 1;Favonius Sword;Sword;x
 1;Favonius Codex;Catalyst;x
 1;Dragon's Bane;Polearm;x
-
 # Standard 3-star Weapons
-0;Slingshot:Bow;x
 0;Cool Steel;Claymore;x
 0;Black Tassel;Polearm;x
 0;Skyrider Sword;Sword;x

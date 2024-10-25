@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Reward {
     int rarity;
     String name;
@@ -13,6 +15,23 @@ class Reward {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", Weapon Type: " + weaponType + ", Element: " + element + ", Rarity: " + rarity;
+        String stars = null;
+        switch (this.rarity) {
+            case 0:
+                stars = "***";
+                break;
+            case 1:
+                stars = "****";
+                break;
+            case 2:
+                stars = "*****";
+                break;
+        }
+        if (Objects.equals(this.weaponType, "x")) {
+            return stars + " " + name + " (" + element + ")";
+        }
+        else {
+            return stars + " " + name + " (" + weaponType + ")";
+        }
     }
 }

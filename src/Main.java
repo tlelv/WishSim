@@ -47,36 +47,55 @@ public class Main {
         return rollResult;
     }
 
-    public static void runRoll (rollHistory rollHist, midHistory midHist, rewardList rewardHistory){
+    public static void runRoll (rollHistory rollHist, midHistory midHist, rewardList rewardHistory,
+                                       List<Reward> rarity2, List<Reward> rarity1, List<Reward> rarity0) {
         int reward;
+        Random roll = new Random();
+        int rollList = 0;
 
-        rollHist.addHistory();
-        reward = rollResult(rollHist.getHistory());
+        rollHist.incrementRollCount();
+        reward = rollResult(rollHist.getRollCount());
+
+        Reward selectedReward = null;
 
         // Guaranteed 4 star
         if (midHist.getHistory() >= 9 && reward != 2) {
             reward = 1;
-        }
-        // rewardHistory.addReward(reward, "PUT ITEM HERE DECIDED BY RNG");
+        };
 
         switch (reward) {
             case 0:
                 System.out.println();
-                System.out.println("    3 star haha get fucked (3)\n");
+                System.out.println("    3 star haha get fucked");
                 midHist.addHistory();
+                if (!rarity0.isEmpty()) {
+                    selectedReward = rarity0.get(roll.nextInt(rarity0.size()));
+                    rollHist.addReward(selectedReward); // Assuming addReward method exists
+                    System.out.println("    " + selectedReward);
+                }
                 break;
             case 1:
                 System.out.println();
-                System.out.println("    4 star woah good job (4)\n");
+                System.out.println("    4 star woah good job");
                 midHist.clearHistory();
+                if (!rarity1.isEmpty()) {
+                    selectedReward = rarity1.get(roll.nextInt(rarity1.size()));
+                    rollHist.addReward(selectedReward); // Assuming addReward method exists
+                    System.out.println("    " + selectedReward);
+                }
                 break;
             case 2:
                 System.out.println();
-                System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡ (5)\n");
+                System.out.println("    5 star yippie ٩(ˊᗜˋ*)و ♡ ");
                 // Resets Pity
                 // Add Method to determine 50/50
                 midHist.addHistory();
-                rollHist.clearHistory();
+                rollHist.resetRollCount();
+                if (!rarity2.isEmpty()) {
+                    selectedReward = rarity2.get(roll.nextInt(rarity2.size()));
+                    rollHist.addReward(selectedReward); // Assuming addReward method exists
+                    System.out.println("    " + selectedReward);
+                }
                 break;
         }
     }
@@ -108,6 +127,9 @@ public class Main {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
+            System.out.println("Importing item list...");
+            System.out.println();
+
             while ((line = br.readLine()) != null) {
                 // Ignore comment lines or empty lines
                 if (line.startsWith("#") || line.trim().isEmpty()) {
@@ -116,10 +138,16 @@ public class Main {
 
                 // Process each line from the file
                 String[] parts = line.split(";");
-                int rarity = Integer.parseInt(parts[0]);
-                String name = parts[1];
-                String weaponType = parts[2];
-                String element = parts[3];
+                // Check if parts have the expected length
+                if (parts.length < 4) {
+                    System.err.println("Skipping line due to insufficient data: " + line);
+                    continue; // Skip to the next line
+                }
+
+                int rarity = Integer.parseInt(parts[0].trim());
+                String name = parts[1].trim();
+                String weaponType = parts[2].trim();
+                String element = parts[3].trim();
 
                 // Create a new reward object
                 Reward reward = new Reward(rarity, name, weaponType, element);
@@ -172,18 +200,18 @@ public class Main {
             switch(val) {
                 case 1:
                     System.out.println("\n    Preparing to Roll...");
-                    runRoll(currHistory, currMidHistory, rewardHistory);
+                    runRoll(currHistory, currMidHistory, rewardHistory, rarity2, rarity1, rarity0);
                     break;
                 case 2:
                     System.out.println("Rolling 10 times");
                     for (int i = 0; i < 10; i++) {
-                        runRoll(currHistory, currMidHistory, rewardHistory);
+                        runRoll(currHistory, currMidHistory, rewardHistory, rarity2, rarity1, rarity0);
                     }
                     break;
                 case 3:
                     System.out.println("\nChecking roll history");
                     System.out.println();
-                    System.out.println("Current Roll History: " + currHistory.getHistory());
+                    System.out.println(currHistory.toString());
                     break;
                 case 4:
                     break;
