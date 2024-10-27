@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-// Make array of roll history so it can be viewed again
 public class Main {
 
     public static int rollResult (int rollHistory) {
@@ -99,21 +98,16 @@ public class Main {
         }
     }
 
-    public static int currency(boolean purchase) {
-        int balance = 0;
-
-        if (purchase) {
-            balance++;
-        }
-
-        return balance;
-    }
-
     public static void main(String[] args) {
         rollHistory currHistory = new rollHistory();
         midHistory currMidHistory = new midHistory();
         Scanner scr = new Scanner(System.in);
+        Scanner scr2 = new Scanner(System.in);
         int val = 0;
+        int val2 = 0;
+        int balance = 10;
+        double money = 0.0;
+        boolean whale = false;
 
         // Lists to hold rewards by rarity
         List<Reward> rarity2 = new ArrayList<>();  // 5-star
@@ -180,13 +174,19 @@ public class Main {
         }
 
 
-        while (val != 4) {
+        while (val != 5) {
             System.out.println("\n     Welcome to 50/50 Cope");
             System.out.println("     ---------------------");
             System.out.println("     Enter (1) to Single wish");
             System.out.println("     Enter (2) to Multi Wish (10)");
             System.out.println("     Enter (3) to Check Wish History");
-            System.out.println("     Enter (4) to Stop");
+            System.out.println("     Enter (4) to Purchase Wishes");
+            System.out.println("     Enter (5) to Stop");
+            System.out.println();
+            System.out.println("     Current Wishes Held: " + balance);
+            if (whale) {
+                System.out.println("     Money Lost: -$" + money);
+            }
             System.out.println();
             System.out.println();
             System.out.print("     Enter Choice: ");
@@ -198,20 +198,76 @@ public class Main {
             switch(val) {
                 case 1:
                     System.out.println("\n    Preparing to Roll...");
-                    runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
+                    if (balance > 0) {
+                        runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
+                        balance--;
+                    }
+                    else {
+                        System.out.println("\n    Insufficient Funds");
+                    }
                     break;
                 case 2:
-                    System.out.println("Rolling 10 times");
-                    for (int i = 0; i < 10; i++) {
-                        runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
+                    System.out.println("\n    Preparing to Rolling 10 times...");
+                    if (balance > 9) {
+                        for (int i = 0; i < 10; i++) {
+                            runRoll(currHistory, currMidHistory, rarity2, rarity1, rarity0);
+                        }
+                        balance = balance - 10;
+                    }
+                   else {
+                        System.out.println("\n    Insufficient Funds");
                     }
                     break;
                 case 3:
-                    System.out.println("\nChecking roll history");
+                    System.out.println("\nChecking roll history...");
                     System.out.println();
                     System.out.println(currHistory.toString());
                     break;
                 case 4:
+                    val2 = 0;
+                    System.out.println();
+
+                    while (val2 != 3) {
+                        System.out.println("\n     Wish Shop");
+                        System.out.println("     -----------------------------------");
+                        System.out.println("     Wish (5): $4.99    Wish (10): $8.99");
+                        System.out.println();
+                        System.out.println("     Enter (1) to Buy a single wish");
+                        System.out.println("     Enter (2) to Buy a Wish Bundle (10)");
+                        System.out.println("     Enter (3) to Quit");
+                        System.out.println();
+                        System.out.println("     Current Wishes Held: " + balance);
+                        if (whale) {
+                            System.out.println("     Money Lost: -$" + money);
+                        }
+                        System.out.println();
+                        System.out.println();
+                        System.out.print("     Enter Choice: ");
+
+                        val2 = scr2.nextInt();
+
+                        switch(val2) {
+                            case 1:
+                                whale = true;
+                                System.out.println("Thank you for your purchase!");
+                                balance += 5;
+                                money += 4.99;
+                                break;
+                            case 2:
+                                whale = true;
+                                System.out.println("Thank you for your purchase!");
+                                balance += 10;
+                                money += 8.99;
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                System.out.println("Enter valid choice");
+                                break;
+                        }
+                    }
+                    break;
+                case 5:
                     break;
                 default:
                     System.out.println("Enter valid choice");
