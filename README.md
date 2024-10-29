@@ -14,6 +14,10 @@
  
   -Trey
 
+## How to Run
+  You can just run it using the Main method. Easy Peasy.<br />
+  There is a text file with the list of rewards. Feel free to edit it!
+
 ## Future Goals
   * Create user interface (Frontend)<br />
   * Adapt to other potential things (popmart)<br />
