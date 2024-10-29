@@ -5,7 +5,7 @@
   Hey! I've been pretty obsessed with Gacha games like Genshin and Honkai: Star Rail. 
   
   A Gacha game is defined as:<br />
-    A video game that implements the gachapon machine style mechanics. Similar to loot boxes, gacha games entice players to spend in-game currency to receive a random in-game item.
+  * A video game that implements the gachapon machine style mechanics. Similar to loot boxes, gacha games entice players to spend in-game currency to receive a random in-game item.
 
   These games have such a chokehold over me that I decided to code the system on my own. Looking to transition this project into more, but it helps to have a baseline I believe. 
   Looking for help and advice!
