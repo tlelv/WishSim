@@ -232,7 +232,7 @@ public class Main {
                         System.out.println("     -----------------------------------");
                         System.out.println("     Wish (5): $4.99    Wish (10): $8.99");
                         System.out.println();
-                        System.out.println("     Enter (1) to Buy a single wish");
+                        System.out.println("     Enter (1) to Buy a Wish Pack (5)");
                         System.out.println("     Enter (2) to Buy a Wish Bundle (10)");
                         System.out.println("     Enter (3) to Quit");
                         System.out.println();
@@ -249,20 +249,20 @@ public class Main {
                         switch(val2) {
                             case 1:
                                 whale = true;
-                                System.out.println("Thank you for your purchase!");
+                                System.out.println("    Thank you for your purchase!");
                                 balance += 5;
                                 money += 4.99;
                                 break;
                             case 2:
                                 whale = true;
-                                System.out.println("Thank you for your purchase!");
+                                System.out.println("    Thank you for your purchase!");
                                 balance += 10;
                                 money += 8.99;
                                 break;
                             case 3:
                                 break;
                             default:
-                                System.out.println("Enter valid choice");
+                                System.out.println("    Enter valid choice");
                                 break;
                         }
                     }
@@ -270,7 +270,7 @@ public class Main {
                 case 5:
                     break;
                 default:
-                    System.out.println("Enter valid choice");
+                    System.out.println("    Enter valid choice");
                     break;
             }
         }
