@@ -1,4 +1,4 @@
-# Reward info: rarity (0-2), name, weapon-type (x if none), element (x if none).
+# Reward format: rarity (0-2), name, weapon-type (x if none), element (x if none).
 # Standard 5-star Characters
 2;Dehya;x;Pyro
 2;Diluc;x;Pyro

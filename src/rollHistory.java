@@ -11,12 +11,10 @@ public class rollHistory {
         this.rewards = new ArrayList<>(); // Initialize rewards list
     }
 
-    // Getter for rollCount
     public int getRollCount() {
         return rollCount;
     }
 
-    // Getter for rewards
     public List<Reward> getRewards() {
         return rewards;
     }
@@ -52,7 +50,7 @@ public class rollHistory {
         } else {
             sb.append("Roll History:\n");
             for (Reward reward : rewards) {
-                sb.append(reward).append("\n"); // Uses Reward's toString() method
+                sb.append(reward).append("\n");
             }
         }
         return sb.toString();

@@ -11,7 +11,6 @@ public class Main {
     public static int rollResult (int rollHistory) {
         int rollResult = 0;
 
-        // create instance of Random class
         Random roll = new Random();
 
         // Generate random integers in range 0 to 999
@@ -64,11 +63,11 @@ public class Main {
         switch (reward) {
             case 0:
                 System.out.println();
-                System.out.println("    3 star haha get fucked");
+                System.out.println("    3 star womp womp");
                 midHist.addHistory();
                 if (!rarity0.isEmpty()) {
                     selectedReward = rarity0.get(roll.nextInt(rarity0.size()));
-                    rollHist.addReward(selectedReward); // Assuming addReward method exists
+                    rollHist.addReward(selectedReward);
                     System.out.println("    " + selectedReward);
                 }
                 break;
@@ -78,7 +77,7 @@ public class Main {
                 midHist.clearHistory();
                 if (!rarity1.isEmpty()) {
                     selectedReward = rarity1.get(roll.nextInt(rarity1.size()));
-                    rollHist.addReward(selectedReward); // Assuming addReward method exists
+                    rollHist.addReward(selectedReward);
                     System.out.println("    " + selectedReward);
                 }
                 break;
@@ -175,7 +174,8 @@ public class Main {
 
 
         while (val != 5) {
-            System.out.println("\n     Welcome to 50/50 Cope");
+            System.out.println("\n     Welcome to Wish Simulator");
+            System.out.println("     By Trey (tlelv)");
             System.out.println("     ---------------------");
             System.out.println("     Enter (1) to Single wish");
             System.out.println("     Enter (2) to Multi Wish (10)");
