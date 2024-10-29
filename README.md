@@ -22,6 +22,15 @@
   * Create web user interface (Frontend)<br />
   * Adapt to other potential things (popmart)<br />
 
+## Current Goal Roadmap:
+  * Web UI<br />
+    * Spring Boot to setup Backend<br />
+      * Define REST APIs: In your Spring Boot project, create REST endpoints that the React front-end will communicate with. These endpoints will handle requests from the front-end and         interact with your Java back-end.<br />
+      * Run API Locally<br />
+    * Develop the Front-End with React<br />
+      * Connect to Spring Boot: In your React project, use JavaScript’s fetch API or libraries like Axios to send HTTP requests to your Spring Boot endpoints. <br />
+      * Handle Data and UI Separately: Use React to handle the front-end view and use Spring Boot exclusively as the back-end data provider. <br />
+    * Use CSS frameworks like Bootstrap or Tailwind within React to keep the UI simple and professional.
 ## Goals (currently implemented, seeking improvements)
 ### Currency System
   * To have a “currency” that gets used and lets you roll (Want it to mimic Money)<br />
